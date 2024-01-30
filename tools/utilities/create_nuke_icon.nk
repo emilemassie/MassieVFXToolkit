@@ -1,0 +1,241 @@
+#! C:/Program Files/Nuke14.0v4/nuke-14.0.4.dll -nx
+#write_info Write4 file:"C:/Users/User/.nuke/MassieVFX/icons/nuke_script.png" format:"512 512 1" chans:":rgba.red:rgba.green:rgba.blue:rgba.alpha:" framerange:"1 100" fps:"0" colorspace:"default (matte_paint)" datatype:"8 bit" transfer:"unknown" views:"main" colorManagement:"OCIO"
+version 14.0 v4
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2557" h="1360" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1894" stretch="1"/>
+            <splitter orientation="2">
+                <split size="774"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="uk.co.thefoundry.scripteditor.2"/>
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="544"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="uk.co.thefoundry.backgroundrenderview.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/User/.nuke/MassieVFX/tools/utilities/create_nuke_icon.nk
+ format "512 512 0 0 512 512 1 square_512"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement OCIO
+ OCIO_config aces_1.1
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut ACES/Rec.709
+ monitorOutLUT "sRGB (ACES)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode9
+ tile_color 0x232323ff
+ label " Create your own icons"
+ note_font "Arial Bold"
+ note_font_size 120
+ note_font_color 0xffffffff
+ xpos -3863
+ ypos 1525
+ bdwidth 1723
+ bdheight 2249
+ z_order -1
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode1
+ tile_color 0x4f4f4fff
+ label " Using an image"
+ note_font Arial
+ note_font_size 80
+ note_font_color 0xcacacaff
+ xpos -3599
+ ypos 1818
+ bdwidth 1045
+ bdheight 1801
+}
+BackdropNode {
+ inputs 0
+ name BackdropNode13
+ tile_color 0x6b6b6bff
+ label <center>View</center>
+ note_font Arial
+ note_font_size 40
+ note_font_color 0xffffffff
+ xpos -3082
+ ypos 3294
+ bdwidth 365
+ bdheight 251
+ z_order 1
+}
+Read {
+ inputs 0
+ file_type png
+ file C:/Users/User/Downloads/kisspng-nuke-the-foundry-visionmongers-compositing-visual-5b07e6667414a8.9785270115272443904755.png
+ format "512 512 0 0 512 512 1 square_512"
+ origset true
+ name Read2
+ xpos -3304
+ ypos 2068
+}
+Premult {
+ name Premult19
+ xpos -3304
+ ypos 2200
+}
+Shuffle2 {
+ fromInput1 {{0} B}
+ fromInput2 {{0} B}
+ mappings "4 rgba.alpha 0 3 rgba.red 0 0 rgba.alpha 0 3 rgba.green 0 1 rgba.alpha 0 3 rgba.blue 0 2 rgba.alpha 0 3 rgba.alpha 0 3"
+ name Shuffle1
+ tile_color 0xffffff01
+ label "Alpha to All"
+ xpos -3304
+ ypos 2251
+}
+Reformat {
+ pbb true
+ name Reformat1
+ xpos -3304
+ ypos 2319
+}
+Transform {
+ translate {0 15}
+ scale 1.1
+ center {256 256}
+ shutteroffset centred
+ name Transform4
+ xpos -3304
+ ypos 2343
+}
+Dot {
+ name Dot36
+ label "  Overall Shape"
+ note_font "Arial Bold"
+ note_font_size 32
+ xpos -3270
+ ypos 2416
+}
+Dot {
+ name Dot37
+ label "  "
+ note_font Arial
+ note_font_size 16
+ xpos -3270
+ ypos 2832
+}
+Ramp {
+ inputs 0
+ cliptype bbox
+ p0 {0 512}
+ p1 {0 0}
+ name Ramp4
+ xpos -3116
+ ypos 2702
+}
+Constant {
+ inputs 0
+ color {0.2704980671 0.270498246 0.2704977989 1}
+ name Constant14
+ xpos -2875
+ ypos 2532
+}
+Dot {
+ name Dot38
+ label "  Bottom"
+ note_font Arial
+ note_font_size 16
+ xpos -2841
+ ypos 2604
+}
+Constant {
+ inputs 0
+ color {0.4019781351 0.4019784331 0.4019777775 1}
+ name Constant15
+ xpos -3003
+ ypos 2533
+}
+Dot {
+ name Dot39
+ label "  Top"
+ note_font Arial
+ note_font_size 16
+ xpos -2969
+ ypos 2605
+}
+Keymix {
+ inputs 3
+ name Keymix4
+ xpos -2938
+ ypos 2696
+}
+Copy {
+ inputs 2
+ from0 rgba.alpha
+ to0 rgba.alpha
+ bbox A
+ name Copy8
+ xpos -2938
+ ypos 2822
+}
+Premult {
+ name Premult11
+ xpos -2938
+ ypos 2860
+}
+push 0
+DropShadow {
+ inputs 2
+ name DropShadow4
+ note_font Verdana
+ xpos -2938
+ ypos 2959
+ inherit_input_color true
+ color {0 0 0}
+ opacity 0.5
+ dropshadow_angle 270
+ dropshadow_distance 10
+}
+set N8b1f3080 [stack 0]
+Write {
+ channels rgba
+ file C:/Users/User/.nuke/MassieVFX/icons/nuke_script.png
+ file_type png
+ checkHashOnRead false
+ version 3
+ name Write4
+ xpos -2938
+ ypos 3411
+}
+push $N8b1f3080
+Viewer {
+ frame_range 1-100
+ viewerProcess "sRGB (ACES)"
+ name Viewer1
+ xpos -2028
+ ypos 2959
+ hide_input true
+}
